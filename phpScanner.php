@@ -1,6 +1,6 @@
 <?php
 
-require_once (__DIR__ . "/vendor/composer/spdx-licenses/src/SpdxLicenses.php");
+require __DIR__ . '/vendor/autoload.php';
 use Composer\Spdx\SpdxLicenses;
 
 $strJsonFileContents = file_get_contents("config.json");
