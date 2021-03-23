@@ -45,7 +45,7 @@ function getScannerArray($id, $version, $vcs, $description, $comment, $homepageU
 
 function getComponents($spdxLicense, $composerPath){
     $processedComponentsArray = array();
-    $componentsJson =  shell_exec($composerPath +" && composer licenses --format=json");
+    $componentsJson =  shell_exec($composerPath ." && composer licenses --format=json");
 
     $componentsArray = json_decode($componentsJson, true);
     $componentsArray = $componentsArray["dependencies"];

@@ -3,4 +3,6 @@ This repository hosts code for the php plugin component to https://github.com/os
 
 Creates a file called phpScanner.json that contains information about licenses by using composer.
 
+Run: phpScanner.php "path to composer directory"
+
 
