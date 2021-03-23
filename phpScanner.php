@@ -2,6 +2,7 @@
 
 require __DIR__ . '/vendor/autoload.php';
 use Composer\Spdx\SpdxLicenses;
+$composerPath = $argv[1];
 
 $strJsonFileContents = file_get_contents("config.json");
 $arrayJsonFileContents = json_decode($strJsonFileContents, true);
@@ -16,14 +17,15 @@ $usageType = $arrayJsonFileContents["usageType"];
 
 $spdxLicense = new SpdxLicenses();
 
-$scannerArray = getScannerArray($id, $version, $vcs, $description, $comment, $homepageUrl, $externalRef, $usageType, $spdxLicense);
+$scannerArray = getScannerArray($id, $version, $vcs, $description, $comment, $homepageUrl, $externalRef, $usageType, $spdxLicense, $composerPath);
 $scannerJson = json_encode($scannerArray, true);
+
 
 $phpScannerFile = fopen("phpScanner.json", "w");
 fwrite($phpScannerFile, $scannerJson);
 fclose($phpScannerFile);
 
-function getScannerArray($id, $version, $vcs, $description, $comment, $homepageUrl, $externalRef, $usageType, $spdxLicense){
+function getScannerArray($id, $version, $vcs, $description, $comment, $homepageUrl, $externalRef, $usageType, $spdxLicense, $composerPath){
     $arrayObj = [
         "id" => $id,
         "version" => $version,
@@ -32,7 +34,7 @@ function getScannerArray($id, $version, $vcs, $description, $comment, $homepageU
         "comment" => $comment,
         "hompageUrl" => $homepageUrl,
         "externalRef" => $externalRef,
-        "components" => getComponents($spdxLicense),
+        "components" => getComponents($spdxLicense, $composerPath),
         "usageTypes" => $usageType,
         "clearingState" => "", 
         "depGraph" => "", 
@@ -41,9 +43,10 @@ function getScannerArray($id, $version, $vcs, $description, $comment, $homepageU
     return $arrayObj;
 }
 
-function getComponents($spdxLicense){
+function getComponents($spdxLicense, $composerPath){
     $processedComponentsArray = array();
-    $componentsJson =  shell_exec("composer licenses --format=json");
+    $componentsJson =  shell_exec($composerPath +" && composer licenses --format=json");
+
     $componentsArray = json_decode($componentsJson, true);
     $componentsArray = $componentsArray["dependencies"];
 
