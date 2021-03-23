@@ -18,7 +18,7 @@ $usageType = $arrayJsonFileContents["usageType"];
 $spdxLicense = new SpdxLicenses();
 
 $scannerArray = getScannerArray($id, $version, $vcs, $description, $comment, $homepageUrl, $externalRef, $usageType, $spdxLicense, $composerPath);
-$scannerJson = json_encode($scannerArray, true);
+$scannerJson = json_encode($scannerArray, JSON_PRETTY_PRINT);
 
 
 $phpScannerFile = fopen("phpScanner.json", "w");
@@ -36,8 +36,8 @@ function getScannerArray($id, $version, $vcs, $description, $comment, $homepageU
         "externalRef" => $externalRef,
         "components" => getComponents($spdxLicense, $composerPath),
         "usageTypes" => $usageType,
-        "clearingState" => "", 
-        "depGraph" => "", 
+        "clearingState" => "",
+        "depGraph" => "",
         "infrastructure" => "",
     ];
     return $arrayObj;
@@ -45,7 +45,7 @@ function getScannerArray($id, $version, $vcs, $description, $comment, $homepageU
 
 function getComponents($spdxLicense, $composerPath){
     $processedComponentsArray = array();
-    $componentsJson =  shell_exec($composerPath ." && composer licenses --format=json");
+    $componentsJson =  shell_exec( "composer licenses --format=json --working-dir=" . $composerPath );
 
     $componentsArray = json_decode($componentsJson, true);
     $componentsArray = $componentsArray["dependencies"];
@@ -71,7 +71,7 @@ function getComponents($spdxLicense, $composerPath){
         $componentObj = createComponent($name, $version, $spdxId, $declaredLicense);
         array_push($processedComponentsArray, $componentObj);
         array_shift($componentsArray);
-    }   
+    }
     return $processedComponentsArray;
 }
 
