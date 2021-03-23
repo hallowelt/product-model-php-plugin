@@ -1,0 +1,13 @@
+{
+	"name": "webbomtool/php-scanner",
+	"description": "Scans a php script for licenses",
+	"license": "GPL-3.0-only",
+	"require": {
+		"composer/spdx-licenses": "^1.5"
+	},
+	"autoload": {
+		"psr-4": {
+			"Composer\\Spdx\\": "vendor"
+		}
+	}
+}
