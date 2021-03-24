@@ -24,6 +24,7 @@ $scannerJson = json_encode($scannerArray, JSON_PRETTY_PRINT);
 $phpScannerFile = fopen("phpScanner.json", "w");
 fwrite($phpScannerFile, $scannerJson);
 fclose($phpScannerFile);
+echo $scannerJson;
 
 function getScannerArray($id, $version, $vcs, $description, $comment, $homepageUrl, $externalRef, $usageType, $spdxLicense, $composerPath){
     $arrayObj = [
