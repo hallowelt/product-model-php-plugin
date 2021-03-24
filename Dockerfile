@@ -12,7 +12,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
  && mkdir /opt/workspace \
  && rm -Rf /var/lib/apt/lists/* \
  && rm -Rf /tmp/*
-COPY includes/runtests.sh /opt/
+COPY includes/run.sh /opt/
 RUN chmod -Rf 600 /root/.ssh \
  && chmod +x /opt/*.sh
 ENTRYPOINT /opt/run.sh
