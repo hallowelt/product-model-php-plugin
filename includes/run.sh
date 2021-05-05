@@ -3,7 +3,7 @@ export NODE_TLS_REJECT_UNAUTHORIZED=0
 cd /opt/workspace
 rm -rf *
 
-git clone https://github.com/hallowelt/mediawiki.git /opt/workspace/target
+git clone https://github.com/wikimedia/mediawiki-extensions-BlueSpiceFoundation.git /opt/workspace/target
 cd /opt/workspace/target
 composer update --ignore-platform-reqs
 
