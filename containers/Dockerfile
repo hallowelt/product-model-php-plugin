@@ -33,7 +33,7 @@ RUN apk update \
  && php composer-setup.php --install-dir=/usr/local/bin --filename=composer --1 \
  && mkdir /opt/scripts \
  && mkdir /output \
- && mkdir /source \
+ && mkdir /source
 COPY ./includes/run.sh /opt/
 RUN chmod -Rf 600 /root/.ssh \
  && chmod +x /opt/*.sh
