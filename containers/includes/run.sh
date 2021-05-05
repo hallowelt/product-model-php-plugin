@@ -3,7 +3,9 @@ export NODE_TLS_REJECT_UNAUTHORIZED=0
 cd /opt/workspace
 rm -rf *
 
-git clone https://github.com/wikimedia/mediawiki-extensions-BlueSpiceFoundation.git /opt/workspace/target
+if [ $USE_DEFAULT_REPO -eq 1 ]; then
+	git clone https://github.com/wikimedia/mediawiki-extensions-BlueSpiceFoundation.git /opt/workspace/target
+fi
 cd /opt/workspace/target
 composer update --ignore-platform-reqs
 
