@@ -2,7 +2,10 @@
 
 require __DIR__ . '/vendor/autoload.php';
 use Composer\Spdx\SpdxLicenses;
-$composerPath = $argv[1];
+//$composerPath = $argv[1];
+$options = getopt("", ["sourcedir:", "outputdir::"] );
+$composerPath = $options['sourcedir'];
+$outputDir = $options['outputdir']?$options['outputdir']:".";
 
 $strJsonFileContents = file_get_contents("config.json");
 $arrayJsonFileContents = json_decode($strJsonFileContents, true);
@@ -21,7 +24,7 @@ $scannerArray = getScannerArray($id, $version, $vcs, $description, $comment, $ho
 $scannerJson = json_encode($scannerArray, JSON_PRETTY_PRINT);
 
 
-$phpScannerFile = fopen("phpScanner.json", "w");
+$phpScannerFile = fopen( $outputDir . "/phpScanner.json", "w" );
 fwrite($phpScannerFile, $scannerJson);
 fclose($phpScannerFile);
 echo $scannerJson;
