@@ -31,18 +31,18 @@ echo $scannerJson;
 
 function getScannerArray($id, $version, $vcs, $description, $comment, $homepageUrl, $externalRef, $usageType, $spdxLicense, $composerPath){
     $arrayObj = [
-        "id" => $id,
+//        "id" => $id,
         "version" => $version,
-        "vcs" => $vcs,
+//        "vcs" => $vcs,
         "description" => $description,
-        "comment" => $comment,
+//        "comment" => $comment,
         "hompageUrl" => $homepageUrl,
-        "externalRef" => $externalRef,
+//        "externalRef" => $externalRef,
         "components" => getComponents($spdxLicense, $composerPath),
-        "usageTypes" => $usageType,
-        "clearingState" => "",
-        "depGraph" => "",
-        "infrastructure" => "",
+//        "usageTypes" => $usageType,
+//        "clearingState" => "",
+//        "depGraph" => "",
+//        "infrastructure" => "",
     ];
     return $arrayObj;
 }
