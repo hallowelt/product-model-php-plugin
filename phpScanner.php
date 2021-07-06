@@ -9,14 +9,14 @@ $outputDir = $options['outputdir']?$options['outputdir']:".";
 
 $strJsonFileContents = file_get_contents("config.json");
 $arrayJsonFileContents = json_decode($strJsonFileContents, true);
-$id = $arrayJsonFileContents["id"];
+//$id = $arrayJsonFileContents["id"];
 $version = $arrayJsonFileContents["version"];
-$vcs = $arrayJsonFileContents["vcs"];
+//$vcs = $arrayJsonFileContents["vcs"];
 $description = $arrayJsonFileContents["description"];
-$comment = $arrayJsonFileContents["comment"];
+//$comment = $arrayJsonFileContents["comment"];
 $homepageUrl = $arrayJsonFileContents["homepageUrl"];
-$externalRef = $arrayJsonFileContents["externalRef"];
-$usageType = $arrayJsonFileContents["usageType"];
+//$externalRef = $arrayJsonFileContents["externalRef"];
+//$usageType = $arrayJsonFileContents["usageType"];
 
 $spdxLicense = new SpdxLicenses();
 
