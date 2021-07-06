@@ -90,7 +90,7 @@ function getLicense($license, $spdxLicense){
 
 function createComponent($name, $version, $spdxId, $declaredLicense){
     $componentObj = [
-        "id" => "",
+//        "id" => "",
         "name" => "",
         "package" => $name,
         "version" => $version,
