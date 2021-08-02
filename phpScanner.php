@@ -70,7 +70,9 @@ class PhpScanner {
 				}
 			}
 
-			$componentObj = $this->createComponent( $name, $version, $spdxId, $declaredLicense );
+			$dependencies = $this->getDependencyTree( $name, $composerPath );
+
+			$componentObj = $this->createComponent( $name, $version, $spdxId, $declaredLicense, $dependencies );
 			array_push( $processedComponentsArray, $componentObj );
 			array_shift( $componentsArray );
 		}
@@ -86,7 +88,25 @@ class PhpScanner {
 		return $licenseDataArray;
 	}
 
-	function createComponent( $name, $version, $spdxId, $declaredLicense ) {
+	function getDependencyTree( $name, $composerPath ) {
+		$dependencyJson = shell_exec( "composer show --tree --format=json --working-dir=" . $composerPath . " " . $name );
+		$dependencyArray = json_decode( $dependencyJson, false );
+
+		$deps = [];
+
+		if ( empty( $dependencyArray->installed[0]->requires ) ) {
+			return $deps;
+		}
+
+		foreach ( $dependencyArray->installed[0]->requires as $dependency ) {
+			//echo $dependency->name;
+			$deps[] = $dependency->name;
+		}
+
+		return $deps;
+	}
+
+	function createComponent( $name, $version, $spdxId, $declaredLicense, $dependencies ) {
 		$componentObj = [
 			//"id" => "",
 			"name" => "",
@@ -96,7 +116,8 @@ class PhpScanner {
 				"spdxId" => $spdxId,
 				"declaredLicense:" => $declaredLicense,
 				"concludedLicense:" => ""
-			]
+			],
+			"requires" => $dependencies
 		];
 		return $componentObj;
 	}
