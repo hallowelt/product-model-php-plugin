@@ -1,5 +1,6 @@
 {
     "version": "VERSION HERE",
     "description": "DESCRIPTION HERE",
-    "homepageUrl": "HOMEPAGEURL HERE"
+    "homepageUrl": "HOMEPAGEURL HERE",
+    "license": "LICENSE HERE"
 }

@@ -29,6 +29,7 @@ class PhpScanner {
 			"version" => $config['version'],
 			"description" => $config['description'],
 			"hompageUrl" => $config['homepageUrl'],
+			"license" => $config['license'],
 			"components" => $this->getComponents( $spdxLicense, $composerPath ),
 			// There is more data available from composer. Leaving this here for future
 			// reference
