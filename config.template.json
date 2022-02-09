@@ -1,6 +1,6 @@
 {
-    "version": "VERSION HERE",
-    "description": "DESCRIPTION HERE",
+    "version": "0.1",
+    "description": "Default project",
     "homepageUrl": "HOMEPAGEURL HERE",
-    "license": "LICENSE HERE"
+    "license": "GPL-3.0-only"
 }
